@@ -1,0 +1,20 @@
+{
+  "name": "proyectofinalavanzado",
+  "version": "1.0.0",
+  "description": "Proyecto Final Avanzado Back End",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "autores": "Araoz Daniel Emmanuel, Chatelet Gastón, Gibbs Ignacio, Martínez Ariel",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13",
+    "nodemon": "^2.0.15"
+  }
+}
