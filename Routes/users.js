@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const usersController = require("./../Controllers/usersController");
+const usersController = require("../controllers/usersController");
 
 router.get("/", (req, res) => {
   res.send("Pagina de Usuarios de Proyecto Final Avanzado Back-End");

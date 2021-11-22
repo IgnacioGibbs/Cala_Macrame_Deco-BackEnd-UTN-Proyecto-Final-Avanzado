@@ -16,8 +16,8 @@ DBConnection();
 
 // Define Controladores
 
-const home = require("./Routes/home");
-const products = require("./Routes/products");
+const home = require("./routes/home");
+const products = require("./routes/products");
 
 // Define Controladores Admin
 
@@ -25,7 +25,7 @@ const products = require("./Routes/products");
 
 app.use("/api", home);
 app.use("/api/productos", products);
-app.use("/api/usuarios", require("./Routes/users")); // Para probar la DB
+app.use("/api/usuarios", require("./routes/users")); // Para probar la DB
 
 // Define las rutas Users
 

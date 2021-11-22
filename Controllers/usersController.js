@@ -1,11 +1,12 @@
-const User = require("../Models/users");
+const User = require("../models/User");
 const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const privateKey = fs.readFileSync("./keys/private.pem");
 
 exports.CreateUsers = async (req, res) => {
-  console.log("Prueba de Post Usuarios");
-  console.log("Body: ", req.body);
   try {
-    const { email, password } = req.body;
+    const { username, email, password } = req.body;
 
     let user = await User.findOne({ email: email }); // Validamos que el usuario sea unico por el registro de su email
 
@@ -21,9 +22,18 @@ exports.CreateUsers = async (req, res) => {
 
     await user.save(); // Guarda el nuevo usuario en la DB
 
-    res.status(200).json({ message: "Usuario guardado con exito" });
+    const jwtOptions = { algorithm: "RS256", expiresIn: "1h" };
+
+    const payload = { username: username };
+
+    const token = jwt.sign(payload, privateKey, jwtOptions); // Genero el token
+
+    res.status(200).json({
+      JWT: token,
+      data: { username },
+      message: "Usuario guardado con exito",
+    });
   } catch (e) {
-    console.log("Error en la creacion de usuario", e);
     res.status(400).json({ message: "Error en la creacion de usuario" });
   }
 };
