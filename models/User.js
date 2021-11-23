@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 // Schema de prueba para MongoDB
 
 const userSchema = mongoose.Schema({
-  name: {
+  username: {
     type: "string",
     require: true,
     trim: true,
