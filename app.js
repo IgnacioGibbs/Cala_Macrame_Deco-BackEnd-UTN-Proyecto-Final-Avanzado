@@ -13,27 +13,17 @@ app.use(morgan("dev")); // Middleware para el manejo y vision solicitudes HTTP p
 
 app.use(express.json({ extend: true })); // Habilito el formato JSON
 
-// Llamado a la conexión con MongoDB
+app.use(express.static(path.join(__dirname, public))); // Habilito ruta publica
 
-DBConnection();
-
-// Define Controladores
+DBConnection(); // Llamado a la conexión con MongoDB
 
 const home = require("./routes/home");
 const products = require("./routes/products");
 const auth = require("./routes/auth");
 
-// Define Controladores Admin
-
-// Define las rutas FullAccess
-
 app.use("/api", home);
 app.use("/api/productos", products);
 app.use("/api/auth", auth);
-
-// Define las rutas Users
-
-// Define las rutas Admin
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);

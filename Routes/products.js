@@ -10,7 +10,7 @@ const {
 
 router.get("/", getProducts);
 
-router.post("/", createProduct);
+router.post("/", multer({ storage: storage }).array("images"), createProduct);
 
 router.get("/:productId", getProductById);
 

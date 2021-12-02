@@ -1,9 +1,17 @@
 const User = require("../models/User");
 
 exports.signUp = async (req, res) => {
-  res.json("signUp");
+  try {
+    res.json("signUp");
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
 };
 
 exports.signIn = async (req, res) => {
-  res.json("signIn");
+  try {
+    res.json("signIn");
+  } catch (error) {
+    res.status(400).json({ error: error });
+  }
 };
