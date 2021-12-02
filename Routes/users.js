@@ -11,8 +11,6 @@ const storage = multer.diskStorage({
     cb(null, uid + path.extname(file.originalname))}
 });
 
-
-
 //traer todos los users
 router.get("/", usersController.getAll);
 

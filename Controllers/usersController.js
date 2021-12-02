@@ -48,4 +48,4 @@ const CreateUsers = async (req, res) => {
 
 const getAll = async (req, res) => { users = await User.find(); console.log(users); res.end() };
 
-module.exports = {CreateUsers, getAll}
+module.exports = {CreateUsers, getAll} 

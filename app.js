@@ -34,3 +34,4 @@ app.use("/api/usuarios", require("./routes/users")); // Para probar la DB
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+ 
