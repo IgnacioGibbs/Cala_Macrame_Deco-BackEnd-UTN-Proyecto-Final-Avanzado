@@ -31,6 +31,12 @@ app.use("/api/usuarios", require("./routes/users")); // Para probar la DB
 
 // Define las rutas Admin
 
+
+//definir ruta publica 
+
+      app.use(express.static(path.join(__dirname, public)))
+
+
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
