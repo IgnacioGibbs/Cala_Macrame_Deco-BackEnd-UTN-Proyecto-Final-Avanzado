@@ -1,59 +1,46 @@
 const { Schema, model } = require("mongoose");
 
-const userSchema = new Schema(
+const productSchema = new Schema(
   {
-    username: {
+    name: {
       type: "string",
-      unique: true,
       require: true,
       trim: true,
-      min: 3,
+      min: 1,
       max: 255,
     },
-    password: {
+    model: {
       type: "string",
-      trim: true,
       require: true,
-      min: 6,
+      trim: true,
+      min: 1,
       max: 255,
     },
-    email: {
+    category: {
       type: "string",
       require: true,
       trim: true,
-      unique: true,
-      min: 6,
+      min: 1,
       max: 255,
     },
-    Name: {
+    description: {
       type: "string",
       require: true,
       trim: true,
+      min: 1,
+      max: 255,
     },
-    surname: {
-      type: "string",
-      require: true,
-      trim: true,
-    },
-    age: {
+    price: {
       type: "number",
       require: true,
-      trim: true,
     },
-    cel: {
+    stock: {
       type: "number",
       require: true,
-      trim: true,
     },
-    roles: [
-      {
-        ref: "Role",
-        type: Schema.Types.ObjectId, //Relacion entre el Schema de roles y el de Users
-      },
-    ],
-    enabled: {
-      type: "boolean",
-      default: false,
+    img: {
+      type: "string",
+      require: true,
     },
     deleted: {
       type: "boolean",
@@ -66,4 +53,4 @@ const userSchema = new Schema(
   }
 );
 
-module.exports = model("User", userSchema);
+module.exports = model("Product", productSchema);
