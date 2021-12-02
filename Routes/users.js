@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 
 //traer todos los users
 router.get("/", usersController.getAll);
-
+router.get("/:id", usersController.Single)
 // POST DE PRUEBA PARA MONGODB
 
 router.post("/", multer({storage: storage}).single('images') ,usersController.CreateUsers); // Lo traigo "oneLiner" por que lo tengo anidado en usersController

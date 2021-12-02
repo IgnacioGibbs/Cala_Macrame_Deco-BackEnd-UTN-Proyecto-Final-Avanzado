@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const { db } = require("../models/User");
 const privateKey = fs.readFileSync("./keys/private.pem");
 
 
@@ -46,6 +47,13 @@ const CreateUsers = async (req, res) => {
   }
 };
 
-const getAll = async (req, res) => { users = await User.find(); console.log(users); res.end() };
+const getAll = async (req, res) =>{ try{ users = await User.find();res.json(users);}catch(e){ res.status(404).json({ message: "falla del getAll"})} };
 
-module.exports = {CreateUsers, getAll} 
+const Single = async (req, res) =>{
+  try {single = await db.Users.findOne({_id = req.params.id});
+   res.json(single)
+  } catch(e){ 
+    res.status(404).json({ message:"error al traer single"})}
+  };
+
+module.exports = {CreateUsers, getAll, Single} 
