@@ -1,9 +1,12 @@
 // Requerimiento de módulos
 const express = require("express");
 const dotenv = require("dotenv");
-const app = express();
 const DBConnection = require("./config/DB");
 const morgan = require("morgan");
+const { createRoles } = require("./config/initialSetup");
+
+const app = express();
+createRoles();
 
 dotenv.config(); // Configuracion del .env
 
@@ -13,7 +16,7 @@ app.use(morgan("dev")); // Middleware para el manejo y vision solicitudes HTTP p
 
 app.use(express.json({ extend: true })); // Habilito el formato JSON
 
-app.use(express.static(path.join(__dirname, public))); // Habilito ruta publica
+//  app.use(express.static(path.join(__dirname, public))); // Habilito ruta publica
 
 DBConnection(); // Llamado a la conexión con MongoDB
 

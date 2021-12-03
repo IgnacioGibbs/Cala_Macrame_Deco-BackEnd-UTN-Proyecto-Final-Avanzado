@@ -9,4 +9,4 @@ const roleSchema = new Schema(
   }
 );
 
-export default model("role", roleSchema);
+module.exports = model("Role", roleSchema);

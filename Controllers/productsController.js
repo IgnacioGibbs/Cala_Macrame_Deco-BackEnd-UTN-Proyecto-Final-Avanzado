@@ -3,7 +3,6 @@ const Product = require("../models/Product");
 exports.createProduct = async (req, res) => {
   try {
     const { name, model, category, description, price, stock, img } = req.body;
-    const imgproduct = sevices.imgproduct;
     const newProduct = new Product({
       name,
       model,
