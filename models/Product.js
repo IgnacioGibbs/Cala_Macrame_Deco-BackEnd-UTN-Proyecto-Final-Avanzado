@@ -38,12 +38,15 @@ const productSchema = new Schema(
       type: "number",
       require: true,
     },
-    img: [
+    img: {
+      type: "string",
+      require: true,
+    } /*[
       {
         ref: "imgProduct",
         type: Schema.Types.ObjectId,
       },
-    ],
+    ]*/,
     deleted: {
       type: "boolean",
       default: false,
