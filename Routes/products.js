@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { verifyToken } = require("../middlewares/authJwt");
+const { verifyToken, isModerator, isAdmin } = require("../middlewares/authJwt");
 const {
   createProduct,
   getProducts,
@@ -11,12 +11,12 @@ const {
 
 router.get("/", getProducts);
 
-router.post("/", verifyToken, createProduct);
+router.post("/", [verifyToken, isModerator], createProduct);
 
 router.get("/:productId", getProductById);
 
-router.put("/:productId", verifyToken, updateProductById);
+router.put("/:productId", [verifyToken, isModerator], updateProductById);
 
-router.delete("/:productId", verifyToken, deleteProductById);
+router.delete("/:productId", [verifyToken, isAdmin], deleteProductById);
 
 module.exports = router;
