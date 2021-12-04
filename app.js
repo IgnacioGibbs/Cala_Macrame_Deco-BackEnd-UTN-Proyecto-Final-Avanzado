@@ -22,10 +22,12 @@ DBConnection(); // Llamado a la conexión con MongoDB
 
 const home = require("./routes/home");
 const products = require("./routes/products");
+const users = require("./routes/users");
 const auth = require("./routes/auth");
 
 app.use("/api", home);
 app.use("/api/productos", products);
+app.use("/api/users", users);
 app.use("/api/auth", auth);
 
 app.listen(port, () => {
