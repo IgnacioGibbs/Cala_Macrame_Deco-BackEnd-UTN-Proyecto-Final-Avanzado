@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const app = express();
 const DBConnection = require("./config/DB");
+const cors = require("cors");
 
 dotenv.config();
 const port = process.env.PORT_SERVER || 4500;
@@ -10,6 +11,7 @@ const port = process.env.PORT_SERVER || 4500;
 // Habilito el formato JSON
 
 app.use(express.json({ extend: true }));
+app.use(cors());
 
 // Llamado a la conexión con MongoDB
 DBConnection();
@@ -31,13 +33,10 @@ app.use("/api/usuarios", require("./routes/users")); // Para probar la DB
 
 // Define las rutas Admin
 
+//definir ruta publica
 
-//definir ruta publica 
-
-      app.use(express.static(path.join(__dirname, public)))
-
+app.use(express.static(path.join(__dirname, public)));
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
- 
