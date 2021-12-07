@@ -1,8 +1,21 @@
 const Product = require("../models/Product");
+const Photo = require("../models/Photos");
 
 exports.createProduct = async (req, res) => {
   try {
-    const { name, model, category, description, price, stock, img } = req.body;
+    const {
+      name,
+      model,
+      category,
+      description,
+      price,
+      stock,
+      imgTitle,
+      imgDescription,
+    } = req.body;
+
+    const { path } = req.file;
+
     const newProduct = new Product({
       name,
       model,
@@ -10,12 +23,23 @@ exports.createProduct = async (req, res) => {
       description,
       price,
       stock,
-      img,
     });
+
+    const newPhoto = {
+      imgTitle: imgTitle,
+      imgDescription: imgDescription,
+      imgPath: path,
+    };
+
+    const photo = new Photo(newPhoto);
+
+    await photo.save();
+
+    newProduct.img = photo._id;
 
     const productSaved = await newProduct.save();
 
-    res.status(201).json(productSaved);
+    res.status(201).json({ message: "productSaved", photo });
   } catch (error) {
     res.status(400).json({ error: error });
   }

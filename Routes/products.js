@@ -8,14 +8,23 @@ const {
   updateProductById,
   deleteProductById,
 } = require("../controllers/productsController");
+const multer = require("../config/multer");
 
 router.get("/", getProducts);
 
-router.post("/", [verifyToken, isModerator], createProduct);
+router.post(
+  "/",
+  [/*verifyToken, isModerator,*/ multer.single("image")],
+  createProduct
+);
 
 router.get("/:productId", getProductById);
 
-router.put("/:productId", [verifyToken, isModerator], updateProductById);
+router.put(
+  "/:productId",
+  [verifyToken, isModerator, multer.single("image")],
+  updateProductById
+);
 
 router.delete("/:productId", [verifyToken, isAdmin], deleteProductById);
 
