@@ -48,7 +48,7 @@ exports.createProduct = async (req, res) => {
 exports.getProducts = async (req, res) => {
   try {
     const products = await Product.find({ deleted: false });
-    res.status(200).json(products);
+    res.status(200).json({ products });
   } catch (error) {
     res.status(400).json({ error: error });
   }
@@ -58,7 +58,7 @@ exports.getProductById = async (req, res) => {
   try {
     const id = req.params.productId;
     const product = await Product.findById(id);
-    res.status(200).json(product);
+    res.status(200).json({ product });
   } catch (error) {
     res.status(400).json({ error: error });
   }
@@ -71,7 +71,7 @@ exports.updateProductById = async (req, res) => {
     const updatedProduct = await Product.findByIdAndUpdate(id, obj, {
       new: true,
     });
-    res.status(200).json(updatedProduct);
+    res.status(200).json({ updatedProduct: updatedProduct });
   } catch (error) {
     res.status(400).json({ error: error });
   }

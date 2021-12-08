@@ -10,15 +10,15 @@ const {
 } = require("../controllers/productsController");
 const multer = require("../config/multer");
 
-router.get("/", getProducts);
+router.get("/", verifyToken, getProducts);
 
 router.post(
   "/",
-  [/*verifyToken, isModerator,*/ multer.single("image")],
+  [verifyToken, isModerator, multer.single("image")],
   createProduct
 );
 
-router.get("/:productId", getProductById);
+router.get("/:productId", verifyToken, getProductById);
 
 router.put(
   "/:productId",
