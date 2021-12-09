@@ -20,12 +20,12 @@ exports.checkDuplicateUsernameOrEmail = async (req, res, next) => {
   const userUsername = await User.findOne({ username: username });
 
   if (userUsername)
-    return res.status(400), json({ message: "The Username already exist" });
+    return res.status(400).json({ message: "The Username already exist" });
 
   const userEmail = await User.findOne({ email: email });
 
   if (userEmail)
-    return res.status(400), json({ message: "The Email already exist" });
+    return res.status(400).json({ message: "The Email already exist" });
 
   next();
 };

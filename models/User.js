@@ -52,6 +52,9 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId, //Relacion entre el Schema de roles y el de Users
       },
     ],
+    uuidEmail: {
+      type: "string",
+    },
     enabled: {
       type: "boolean",
       default: false,

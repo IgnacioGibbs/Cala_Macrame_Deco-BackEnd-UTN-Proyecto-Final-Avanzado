@@ -10,7 +10,7 @@ const {
 } = require("../controllers/productsController");
 const multer = require("../config/multer");
 
-router.get("/", getProducts);
+router.get("/", verifyToken, getProducts);
 
 router.post(
   "/",
@@ -18,7 +18,7 @@ router.post(
   createProduct
 );
 
-router.get("/:productId", getProductById);
+router.get("/:productId", verifyToken, getProductById);
 
 router.put(
   "/:productId",

@@ -13,8 +13,9 @@ createRoles();
 dotenv.config(); // Configuracion del .env
 
 const port = process.env.PORT_SERVER || 4500;
+const server = process.env.URL_SERVER || "http://localhost:";
 
-app.use(morgan("dev")); // Middleware para el manejo y vision solicitudes HTTP por consola
+app.use(morgan("dev")); // Middleware para el manejo y vision de solicitudes HTTP por consola
 
 app.use(express.json({ extend: true })); // Habilito el formato JSON
 
@@ -35,7 +36,7 @@ app.use("/uploads", express.static(path.resolve("uploads"))); // Habilito ruta p
 async function main() {
   DBConnection(); // Llamado a la conexión con MongoDB
   await app.listen(port);
-  console.log(`Servidor escuchando en http://localhost:${port}`);
+  console.log(`Server listening on ${server}:${port}`);
 }
 
 main();
