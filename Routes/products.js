@@ -8,7 +8,7 @@ const {
   updateProductById,
   deleteProductById,
 } = require("../controllers/productsController");
-const multer = require("../config/multer");
+const multer = require("../services/multer");
 
 router.get("/", verifyToken, getProducts);
 

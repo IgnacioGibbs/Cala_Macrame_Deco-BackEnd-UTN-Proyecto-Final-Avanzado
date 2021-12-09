@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { signUp, signIn } = require("../controllers/authController");
+const { signUp, signIn, verify } = require("../controllers/authController");
 
 const {
   checkDuplicateUsernameOrEmail,
@@ -14,5 +14,7 @@ router.post(
   [checkRolesExisted, checkDuplicateUsernameOrEmail],
   signUp
 );
+
+router.get("/verify/:uid", verify);
 
 module.exports = router;
