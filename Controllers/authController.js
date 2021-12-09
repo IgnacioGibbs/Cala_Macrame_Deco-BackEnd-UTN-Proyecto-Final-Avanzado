@@ -35,7 +35,7 @@ exports.signUp = async (req, res) => {
       newUser.roles = [role._id];
     }
 
-    sendEmail({
+    await sendEmail({
       email: email,
       body: `<h1>Gracias ${username} por registrarte!</h1>
     <br>

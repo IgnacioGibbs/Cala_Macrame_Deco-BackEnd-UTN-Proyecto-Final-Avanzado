@@ -20,9 +20,9 @@ const sendEmail = async ({
       html: body,
     };
     const { messageId } = await transporter.sendMail(emailOptions);
-    res.status(200).json({ messageId: messageId });
+    return messageId;
   } catch (error) {
-    res.status(400).json({ error: error });
+    console.log(error);
   }
 };
 
