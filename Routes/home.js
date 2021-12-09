@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const { getProducts } = require("../controllers/productsController");
 
-router.get("/", (req, res) => {
-  res.send("Home de Proyecto Final Avanzado Back-End");
-});
+router.get("/", getProducts);
 
 module.exports = router;
