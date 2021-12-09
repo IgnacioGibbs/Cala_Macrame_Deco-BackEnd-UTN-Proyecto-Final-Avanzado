@@ -8,13 +8,13 @@ const {
   updateProductById,
   deleteProductById,
 } = require("../controllers/productsController");
-const multer = require("../services/multer");
+const multer = require("../config/multer");
 
 router.get("/", verifyToken, getProducts);
 
 router.post(
   "/",
-  [verifyToken, isModerator, multer.single("image")],
+  [/*verifyToken, isModerator,*/ multer.single("image")],
   createProduct
 );
 

@@ -1,5 +1,6 @@
 const Product = require("../models/Product");
 const Photo = require("../models/Photos");
+const { createPhoto } = require("../services/photos");
 
 exports.createProduct = async (req, res) => {
   try {
@@ -25,21 +26,13 @@ exports.createProduct = async (req, res) => {
       stock,
     });
 
-    const newPhoto = {
-      imgTitle: imgTitle,
-      imgDescription: imgDescription,
-      imgPath: path,
-    };
-
-    const photo = new Photo(newPhoto);
-
-    await photo.save();
+    const photo = await createPhoto({ imgTitle, imgDescription, path });
 
     newProduct.img = photo._id;
 
     const productSaved = await newProduct.save();
 
-    res.status(201).json({ message: "productSaved", photo });
+    res.status(201).json({ message: "productSaved", productSaved });
   } catch (error) {
     res.status(400).json({ error: error });
   }

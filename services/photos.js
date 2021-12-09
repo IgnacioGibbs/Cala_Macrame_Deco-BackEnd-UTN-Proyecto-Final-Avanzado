@@ -1,20 +1,21 @@
 const Photo = require("../models/Photos");
 const fs = require("fs-extra");
-/*
-exports.createPhoto = async (req, res) => {
- const { imgTitle, imgDescription } = req.body;
-  const { path } = req.file;
-  const newPhoto = {
-    imgTitle: imgTitle,
-    imgDescription: imgDescription,
-    imgPath: path,
-  };
 
-  const photo = new Photo(newPhoto);
+exports.createPhoto = async ({ imgTitle, imgDescription, path }) => {
+  try {
+    const newPhoto = {
+      imgTitle: imgTitle,
+      imgDescription: imgDescription,
+      imgPath: path,
+    };
+    const photo = new Photo(newPhoto);
 
-  await photo.save();
+    await photo.save();
 
-  return res.json({ message: "Photo successfully saved" }, photo);
+    return photo;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getPhotos = async (req, res) => {
@@ -46,4 +47,3 @@ exports.updatePhoto = async (req, res) => {
   });
   return res.json({ message: "Succesfully updated", updatedPhoto });
 };
-*/
