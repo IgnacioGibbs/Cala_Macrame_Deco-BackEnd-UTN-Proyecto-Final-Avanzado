@@ -1,21 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const usersController = require("../controllers/usersController");
-const path = require("path");
-const {v4: uuid} = require("uuid");
-const multer = require("multer");
-const uid = uuid();
-const storage = multer.diskStorage({
-  destination: './public/images/user', 
-  filename: (req, file, cb, filename)=>{
-    cb(null, uid + path.extname(file.originalname))}
-});
+const {
+  getUsers,
+  getUserById,
+  updateUserById,
+  deleteUserById,
+} = require("../controllers/userController");
+const { isModerator, isAdmin, verifyToken } = require("../middlewares/authJwt");
+const { checkRolesExisted } = require("../middlewares/validationSignup");
 
-//traer todos los users
-router.get("/", usersController.getAll);
-router.get("/:id", usersController.Single)
-// POST DE PRUEBA PARA MONGODB
-
-router.post("/", multer({storage: storage}).single('images') ,usersController.CreateUsers); // Lo traigo "oneLiner" por que lo tengo anidado en usersController
+router.get("/users", [verifyToken, isModerator], getUsers);
+router.get("/:usersId", [verifyToken, isModerator], getUserById);
+router.put("/:usersId", [verifyToken, isModerator], updateUserById);
+router.delete("/:usersId", [verifyToken, isAdmin], deleteUserById);
 
 module.exports = router;
