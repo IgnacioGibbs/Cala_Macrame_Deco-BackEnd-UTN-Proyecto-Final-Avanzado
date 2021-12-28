@@ -25,9 +25,9 @@ exports.signUp = async (req, res) => {
       cel,
       uuidEmail: uid,
     });
-
+    console.log("newUser", newUser);
     if (roles) {
-      // busco el id de los roles asignado, si no lo encuentra uso User por defecto
+      // Busco el id de los roles asignado, si no lo encuentra uso User por defecto
       const foundRoles = await Role.find({ name: { $in: roles } });
       newUser.roles = foundRoles.map((role) => role._id);
     } else {

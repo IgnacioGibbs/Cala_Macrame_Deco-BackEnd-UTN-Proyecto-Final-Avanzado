@@ -25,11 +25,13 @@ const home = require("./routes/home");
 const products = require("./routes/products");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
+const cart = require("./Routes/cart");
 
 app.use("/api", home);
 app.use("/api/productos", products);
 app.use("/api/users", users);
 app.use("/api/auth", auth);
+app.use("/api/cart", cart);
 
 app.use("/uploads", express.static(path.resolve("uploads"))); // Habilito ruta publica
 
