@@ -28,7 +28,7 @@ https://github.com/Bipperty/Proyecto-Final-Avanzado-Back-End.git
 - EMAIL_SERVICE = ""
 - EMAIL_USER = ""
 - EMAIL_PASS = ""
-- MPAGO_TOKEN = ""
+- MP_TOKEN = ""
 
 ###
 

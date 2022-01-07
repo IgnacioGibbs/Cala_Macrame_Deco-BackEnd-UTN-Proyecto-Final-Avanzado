@@ -1,4 +1,3 @@
-// Requerimiento de módulos
 const express = require("express");
 const dotenv = require("dotenv");
 const DBConnection = require("./config/DB");

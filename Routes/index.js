@@ -13,6 +13,6 @@ router.use("/api/productos", products);
 router.use("/api/users", users);
 router.use("/api/auth", auth);
 router.use("/api/carts", cart);
-router.use("/api/MP", MP);
+router.use("/api/payment", MP);
 
 module.exports = router;
