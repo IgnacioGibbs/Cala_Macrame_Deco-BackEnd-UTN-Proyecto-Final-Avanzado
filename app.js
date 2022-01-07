@@ -7,16 +7,15 @@ const helmet = require("helmet");
 const { createRoles } = require("./config/initialSetup");
 const path = require("path");
 const cors = require("cors");
+dotenv.config(); // Configuracion del .env
 const port = process.env.PORT_SERVER || 4500;
-const server = process.env.URL_SERVER || "http://localhost:";
+const server = process.env.URL_SERVER || "http://localhost";
 const router = require("./routes/index");
 const app = express();
 
 createRoles();
 
-dotenv.config(); // Configuracion del .env
-
-app.use(morgan("dev")); // Middleware para el manejo y vision de solicitudes HTTP por consola
+app.use(morgan("dev")); // Middleware para el manejo y vision de solicitudes HTTP por console
 
 app.use(helmet());
 
