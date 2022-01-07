@@ -7,10 +7,10 @@
 - Base de datos con MongoDB
 - Uso de Multer para el manejo de imágenes
 - Autenticación con JWT
-- Validaciones de usuarios, asignación de roles para los mismos
+- Autentifiación de usuarios, asignación de roles para los mismos
 - Nodemailer para el envío de mail (confirmación de registro del usuario)
-- Manejo de rutas con sus respectivos controllers
-- Variables de entorno configuradas en archivo .env
+- Encriptación de contraseñas para su correcto manejo
+- Implementacion de Meracado Pago como medio de cobro del ecommencer
 
 # Para iniciar el proyecto
 
