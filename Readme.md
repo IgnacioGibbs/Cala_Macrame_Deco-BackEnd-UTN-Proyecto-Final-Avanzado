@@ -20,23 +20,14 @@ https://github.com/Bipperty/Proyecto-Final-Avanzado-Back-End.git
 
 - `npm install`
 - Reemplazar variables de entorno para la base de datos
-- # Misceláneo
 
+- # .env
 - PORT_SERVER = 4000
 - URL_SERVER = "http://localhost"
-
-- # Mongo
-
 - STRING_SERVER_MONGODB = ""
-
-- # Email
-
 - EMAIL_SERVICE = ""
 - EMAIL_USER = ""
 - EMAIL_PASS = ""
-
-- # MP
-
 - MPAGO_TOKEN = ""
 
 - `npm dev run`
