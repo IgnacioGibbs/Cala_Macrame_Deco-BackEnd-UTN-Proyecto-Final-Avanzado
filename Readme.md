@@ -21,7 +21,8 @@ https://github.com/Bipperty/Proyecto-Final-Avanzado-Back-End.git
 - `npm install`
 - Reemplazar variables de entorno para la base de datos
 
-- # .env
+# .env
+
 - PORT_SERVER = 4000
 - URL_SERVER = "http://localhost"
 - STRING_SERVER_MONGODB = ""
@@ -29,6 +30,8 @@ https://github.com/Bipperty/Proyecto-Final-Avanzado-Back-End.git
 - EMAIL_USER = ""
 - EMAIL_PASS = ""
 - MPAGO_TOKEN = ""
+
+#
 
 - `npm dev run`
 - Abrir el navegador en http://localhost:4000
