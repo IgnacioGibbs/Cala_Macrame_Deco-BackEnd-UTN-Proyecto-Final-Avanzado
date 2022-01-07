@@ -14,14 +14,13 @@
 
 # Para iniciar el proyecto
 
-Clone el siguiente repositorio:
+### Clone el siguiente repositorio:
 
 https://github.com/Bipperty/Proyecto-Final-Avanzado-Back-End.git
 
 - `npm install`
-- Reemplazar variables de entorno para la base de datos
 
-# .env
+### Reemplazar .env
 
 - PORT_SERVER = 4000
 - URL_SERVER = "http://localhost"
