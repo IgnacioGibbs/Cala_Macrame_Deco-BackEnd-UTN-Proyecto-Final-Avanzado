@@ -30,7 +30,7 @@ https://github.com/Bipperty/Proyecto-Final-Avanzado-Back-End.git
 - EMAIL_PASS = ""
 - MPAGO_TOKEN = ""
 
-#
+###
 
 - `npm dev run`
 - Abrir el navegador en http://localhost:4000
