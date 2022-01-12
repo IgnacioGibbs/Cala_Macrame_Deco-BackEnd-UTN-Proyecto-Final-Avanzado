@@ -1,5 +1,6 @@
 const MP = require("mercadopago");
-const successHtml = process.env.URL_SERVER + ":" + process.env.PORT_SERVER;
+const successHtml =
+  process.env.URL_SERVER + ":" + process.env.PORT_SERVER_FRONT;
 
 MP.configure({
   access_token: process.env.MP_TOKEN,

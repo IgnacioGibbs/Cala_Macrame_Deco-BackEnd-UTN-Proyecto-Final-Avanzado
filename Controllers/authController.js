@@ -5,12 +5,11 @@ const fs = require("fs");
 const privateKey = fs.readFileSync("./keys/private.pem");
 const { sendEmail } = require("../services/nodemailer");
 const { v4: uuid } = require("uuid");
-
 const jwtOptions = { algorithm: "RS256", expiresIn: "1h" };
 
 exports.signUp = async (req, res) => {
   try {
-    const { username, password, email, roles, name, surname, age, cel } =
+    const { username, password, email, roles, name, surname, birthYear, cel } =
       req.body;
 
     const uid = uuid();
@@ -21,7 +20,7 @@ exports.signUp = async (req, res) => {
       email,
       name,
       surname,
-      age,
+      birthYear,
       cel,
       uuidEmail: uid,
     });
