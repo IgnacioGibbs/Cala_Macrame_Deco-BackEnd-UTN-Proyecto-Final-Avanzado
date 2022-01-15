@@ -42,7 +42,7 @@ const userSchema = new Schema(
       trim: true,
     },
     cel: {
-      type: "number",
+      type: "string",
       require: true,
       trim: true,
     },

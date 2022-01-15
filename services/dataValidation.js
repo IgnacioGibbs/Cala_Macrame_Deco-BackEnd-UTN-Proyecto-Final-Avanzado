@@ -4,7 +4,7 @@ module.exports = (schema) => {
       await schema.validateAsync(req.body);
       next();
     } catch (err) {
-      res.send({ message: err.details[0].message });
+      res.status(400).json({ message: err.details[0].message });
     }
   };
 };
