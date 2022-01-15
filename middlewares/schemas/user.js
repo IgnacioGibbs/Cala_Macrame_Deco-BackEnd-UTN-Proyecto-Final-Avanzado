@@ -45,8 +45,8 @@ exports.userSchema = joi.object({
   birthYear: joi
     .number()
     .integer()
-    .min(dt.getFullYear - 120)
-    .max(dt.getFullYear - 18)
+    .min(dt.getFullYear() - 120)
+    .max(dt.getFullYear() - 18)
     .required()
     .messages({
       "any.required": "Por favor definir edad",
