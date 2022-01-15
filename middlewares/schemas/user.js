@@ -32,7 +32,7 @@ exports.userSchema = joi.object({
     }),
   name: joi
     .string()
-    .pattern(new RegExp("^[a-zA]"))
+    .pattern(new RegExp("^[a-zA-Z]"))
     .max(15)
     .required()
     .messages({
@@ -53,7 +53,7 @@ exports.userSchema = joi.object({
       "number.min": "Usted deveria estar bajo tierra",
       "number.max": "es neceserio ser mayor de edad para registrarse",
     }),
-  cel: joi.number().min(10).max(13).required().messages({
+  cel: joi.string().min(10).max(16).required().messages({
     "any.required": "Su celular es requerido",
     "number.min": "Numero invalido (demasiado corto)",
     "number.max": "Numero invalido (demasiado largo)",
