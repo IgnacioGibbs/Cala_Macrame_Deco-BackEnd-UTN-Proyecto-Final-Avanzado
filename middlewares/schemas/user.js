@@ -54,7 +54,7 @@ exports.userSchema = joi.object({
       "number.max": "es neceserio ser mayor de edad para registrarse",
     }),
   cel: joi.number().min(10).max(13).required().messages({
-    "any.required": "Nombre requerido",
+    "any.required": "Su celular es requerido",
     "number.min": "Numero invalido (demasiado corto)",
     "number.max": "Numero invalido (demasiado largo)",
   }),
