@@ -5,7 +5,7 @@ const {
   getUserById,
   updateUserById,
   deleteUserById,
-} = require("../controllers/userController");
+} = require("../controllers/usersController");
 const { isModerator, isAdmin, verifyToken } = require("../middlewares/authJwt");
 const { checkRolesExisted } = require("../middlewares/validationSignup");
 
