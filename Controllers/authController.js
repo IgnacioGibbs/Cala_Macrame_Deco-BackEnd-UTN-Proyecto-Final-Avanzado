@@ -5,12 +5,11 @@ const fs = require("fs");
 const privateKey = fs.readFileSync("./keys/private.pem");
 const { sendEmail } = require("../services/nodemailer");
 const { v4: uuid } = require("uuid");
-
 const jwtOptions = { algorithm: "RS256", expiresIn: "1h" };
 
 exports.signUp = async (req, res) => {
   try {
-    const { username, password, email, roles, name, surname, age, cel } =
+    const { username, password, email, roles, name, surname, birthYear, cel } =
       req.body;
 
     const uid = uuid();
@@ -21,13 +20,13 @@ exports.signUp = async (req, res) => {
       email,
       name,
       surname,
-      age,
+      birthYear,
       cel,
       uuidEmail: uid,
     });
-
+    console.log("newUser", newUser);
     if (roles) {
-      // busco el id de los roles asignado, si no lo encuentra uso User por defecto
+      // Busco el id de los roles asignado, si no lo encuentra uso User por defecto
       const foundRoles = await Role.find({ name: { $in: roles } });
       newUser.roles = foundRoles.map((role) => role._id);
     } else {
@@ -172,7 +171,7 @@ exports.signUp = async (req, res) => {
                                                                                                                               <td class="m_-2724877240308992397height0"
                                                                                                                                   height="25"
                                                                                                                                   style="padding-left:16px;padding-right:16px;font-family:Helvetica Neue,Arial,sans-serif;font-size:14px;text-align:center;color:white;font-weight:bold">
-                                                                                                                                  <a href="${process.env.URL_SERVER}:${process.env.PORT_SERVER}/api/auth/verify/${uid}"
+                                                                                                                                  <a href="${process.env.URL_SERVER}:${process.env.PORT_SERVER_FRONT}/api/auth/verify/${uid}"
                                                                                                                                       style="text-decoration:none"
                                                                                                                                       target="_blank"><span
                                                                                                                                           style="display:block;width:100%;padding-top:7px;padding-bottom:7px;color:#ffffff">Validar&nbsp;email</span></a>

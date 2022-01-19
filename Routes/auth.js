@@ -6,7 +6,8 @@ const {
   verify,
   verified,
 } = require("../controllers/authController");
-
+const validation = require("../services/dataValidation");
+const { userSchema } = require("../middlewares/schemas/user");
 const {
   checkDuplicateUsernameOrEmail,
   checkRolesExisted,
@@ -16,7 +17,7 @@ router.post("/signin", signIn);
 
 router.post(
   "/signup",
-  [checkRolesExisted, checkDuplicateUsernameOrEmail],
+  [checkRolesExisted, checkDuplicateUsernameOrEmail, validation(userSchema)],
   signUp
 );
 

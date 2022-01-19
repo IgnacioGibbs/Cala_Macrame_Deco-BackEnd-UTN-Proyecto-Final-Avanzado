@@ -36,13 +36,13 @@ const userSchema = new Schema(
       require: true,
       trim: true,
     },
-    age: {
+    birthYear: {
       type: "number",
       require: true,
       trim: true,
     },
     cel: {
-      type: "number",
+      type: "string",
       require: true,
       trim: true,
     },
