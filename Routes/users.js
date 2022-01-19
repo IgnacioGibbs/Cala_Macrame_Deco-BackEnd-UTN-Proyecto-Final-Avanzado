@@ -9,7 +9,7 @@ const {
 const { isModerator, isAdmin, verifyToken } = require("../middlewares/authJwt");
 const { checkRolesExisted } = require("../middlewares/validationSignup");
 
-router.get("/users", [verifyToken, isModerator], getUsers);
+router.get("/", [verifyToken, isModerator], getUsers);
 router.get("/:usersId", [verifyToken, isModerator], getUserById);
 router.put("/:usersId", [verifyToken, isModerator], updateUserById);
 router.delete("/:usersId", [verifyToken, isAdmin], deleteUserById);
