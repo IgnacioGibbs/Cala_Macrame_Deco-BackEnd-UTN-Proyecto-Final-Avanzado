@@ -2,7 +2,16 @@ const User = require("../models/User");
 
 exports.getUsers = async (req, res) => {
   try {
-    const users = await User.find({ deleted: false, enabled: true });
+    const users = await User.aggregate([
+      {
+        $lookup: {
+          from: "roles",
+          localField: "roles",
+          foreignField: "_id",
+          as: "roles",
+        },
+      },
+    ]);
     res.status(200).json({ users });
   } catch (error) {
     res.status(400).json({ error: error });
