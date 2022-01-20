@@ -45,12 +45,22 @@ exports.getProducts = async (req, res) => {
       {
         $lookup: {
           from: "photos",
+<<<<<<< HEAD
           localField: "img",
           foreignField: "_id",
           as: "img",
         },
       },
     ]);
+=======
+          localField: "photos",
+          foreignField: "_id",
+          as: "photos",
+        },
+      },
+    ]);
+   
+>>>>>>> 2510a9b214852156197365f9cb6948d468f212f4
     res.status(200).json({ products });
   } catch (error) {
     res.status(400).json({ error: error });
