@@ -40,7 +40,17 @@ exports.createProduct = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    const products = await Product.find({ deleted: false });
+    const products = await Product.aggregate([
+      {
+        $lookup: {
+          from: "photos",
+          localField: "photos",
+          foreignField: "_id",
+          as: "photos",
+        },
+      },
+    ]);
+   
     res.status(200).json({ products });
   } catch (error) {
     res.status(400).json({ error: error });
