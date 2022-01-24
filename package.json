@@ -4,8 +4,8 @@
   "description": "Proyecto Final Avanzado Back End",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node app",
+    "dev": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "autores": "Santi Araoz Daniel Emmanuel, Chatelet Gastón, Gibbs Ignacio, Martínez Ariel",
