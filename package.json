@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Proyecto Final Avanzado Back End",
   "main": "app.js",
+  "engines": {
+    "node": "16.13.0"
+  },
   "scripts": {
     "start": "node app",
     "dev": "nodemon app",
