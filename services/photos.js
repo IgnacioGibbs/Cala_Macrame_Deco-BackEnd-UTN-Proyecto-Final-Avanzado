@@ -1,12 +1,11 @@
 const Photo = require("../models/Photos");
-const fs = require("fs-extra");
 
-exports.createPhoto = async ({ imgTitle, imgDescription, path }) => {
+exports.createPhoto = async ({ imgTitle, imgDescription, backPath }) => {
   try {
     const newPhoto = {
       imgTitle: imgTitle,
       imgDescription: imgDescription,
-      imgPath: path,
+      imgPath: backPath,
     };
     const photo = new Photo(newPhoto);
 

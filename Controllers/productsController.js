@@ -1,5 +1,4 @@
 const Product = require("../models/Product");
-const Photo = require("../models/Photos");
 const { createPhoto } = require("../services/photos");
 
 exports.createProduct = async (req, res) => {
@@ -17,6 +16,8 @@ exports.createProduct = async (req, res) => {
 
     const { path } = req.file;
 
+    const backPath = `process.env.URL_SERVER: process.env.PORT_SERVER/${path}`;
+
     const newProduct = new Product({
       name,
       model,
@@ -26,7 +27,7 @@ exports.createProduct = async (req, res) => {
       stock,
     });
 
-    const photo = await createPhoto({ imgTitle, imgDescription, path });
+    const photo = await createPhoto({ imgTitle, imgDescription, backPath });
 
     newProduct.img = photo._id;
 
@@ -40,7 +41,16 @@ exports.createProduct = async (req, res) => {
 
 exports.getProducts = async (req, res) => {
   try {
-    const products = await Product.find({ deleted: false });
+    const products = await Product.aggregate([
+      {
+        $lookup: {
+          from: "photos",
+          localField: "img",
+          foreignField: "_id",
+          as: "img",
+        },
+      },
+    ]);
     res.status(200).json({ products });
   } catch (error) {
     res.status(400).json({ error: error });
