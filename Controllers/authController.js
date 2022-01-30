@@ -8,35 +8,35 @@ const { v4: uuid } = require("uuid");
 const jwtOptions = { algorithm: "RS256", expiresIn: "1h" };
 
 exports.signUp = async (req, res) => {
-  try {
-    const { username, password, email, roles, name, surname, birthYear, cel } =
-      req.body;
+    try {
+        const { username, password, email, roles, name, surname, birthYear, cel } =
+            req.body;
 
-    const uid = uuid();
+        const uid = uuid();
 
-    const newUser = new User({
-      username,
-      password: await User.encryptPassword(password),
-      email,
-      name,
-      surname,
-      birthYear,
-      cel,
-      uuidEmail: uid,
-    });
-    console.log("newUser", newUser);
-    if (roles) {
-      // Busco el id de los roles asignado, si no lo encuentra uso User por defecto
-      const foundRoles = await Role.find({ name: { $in: roles } });
-      newUser.roles = foundRoles.map((role) => role._id);
-    } else {
-      const role = await Role.findOne({ name: "user" });
-      newUser.roles = [role._id];
-    }
+        const newUser = new User({
+            username,
+            password: await User.encryptPassword(password),
+            email,
+            name,
+            surname,
+            birthYear,
+            cel,
+            uuidEmail: uid,
+        });
+        console.log("newUser", newUser);
+        if (roles) {
+            // Busco el id de los roles asignado, si no lo encuentra uso User por defecto
+            const foundRoles = await Role.find({ name: { $in: roles } });
+            newUser.roles = foundRoles.map((role) => role._id);
+        } else {
+            const role = await Role.findOne({ name: "user" });
+            newUser.roles = [role._id];
+        }
 
-    await sendEmail({
-      email: email,
-      body: `<table width="100%" border="0" cellspacing="0" cellpadding="0">
+        await sendEmail({
+            email: email,
+            body: `<table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tbody>
           <tr>
               <td class="m_-2724877240308992397minwidth" align="center" style="min-width:512px;background-color:#f3f3f3">
@@ -171,7 +171,7 @@ exports.signUp = async (req, res) => {
                                                                                                                               <td class="m_-2724877240308992397height0"
                                                                                                                                   height="25"
                                                                                                                                   style="padding-left:16px;padding-right:16px;font-family:Helvetica Neue,Arial,sans-serif;font-size:14px;text-align:center;color:white;font-weight:bold">
-                                                                                                                                  <a href="${process.env.URL_SERVER}:${process.env.PORT_SERVER_FRONT}/api/auth/verify/${uid}"
+                                                                                                                                  <a href="${process.env.APP_URL}/auth/verify/${uid}"
                                                                                                                                       style="text-decoration:none"
                                                                                                                                       target="_blank"><span
                                                                                                                                           style="display:block;width:100%;padding-top:7px;padding-bottom:7px;color:#ffffff">Validar&nbsp;email</span></a>
@@ -270,66 +270,66 @@ exports.signUp = async (req, res) => {
                           </tr>
                       </tbody>
                   </table>`,
-    });
+        });
 
-    await newUser.save(); // Guardo el usuario en la DB
+        await newUser.save(); // Guardo el usuario en la DB
 
-    const payload = {
-      id: newUser._id,
-      username: newUser.username,
-      roles: newUser.roles,
-    };
+        const payload = {
+            id: newUser._id,
+            username: newUser.username,
+            roles: newUser.roles,
+        };
 
-    const token = jwt.sign(payload, privateKey, jwtOptions); // Genero el token
+        const token = jwt.sign(payload, privateKey, jwtOptions); // Genero el token
 
-    res
-      .status(200)
-      .json({ JWT: token, data: payload, message: "User saved successfully" });
-  } catch (error) {
-    res.status(400).json({ error: error });
-  }
+        res
+            .status(200)
+            .json({ JWT: token, data: payload, message: "User saved successfully" });
+    } catch (error) {
+        res.status(400).json({ error: error });
+    }
 };
 
 exports.signIn = async (req, res) => {
-  try {
-    const { email, password } = req.body;
+    try {
+        const { email, password } = req.body;
 
-    const userFound = await User.findOne({ email: email }).populate("roles");
+        const userFound = await User.findOne({ email: email }).populate("roles");
 
-    if (!userFound) return res.status(406).json({ message: "User not found" });
+        if (!userFound) return res.status(406).json({ message: "User not found" });
 
-    const matchPassword = await User.comparePassword(
-      password,
-      userFound.password
-    );
+        const matchPassword = await User.comparePassword(
+            password,
+            userFound.password
+        );
 
-    if (!matchPassword)
-      return res.status(401).json({ token: null, message: "Invalid password" });
+        if (!matchPassword)
+            return res.status(401).json({ token: null, message: "Invalid password" });
 
-    const payload = {
-      id: userFound._id,
-      username: userFound.username,
-      roles: userFound.roles,
-    };
+        const payload = {
+            id: userFound._id,
+            username: userFound.username,
+            roles: userFound.roles,
+        };
 
-    const token = jwt.sign(payload, privateKey, jwtOptions);
+        const token = jwt.sign(payload, privateKey, jwtOptions);
 
-    res.json({ token: token });
-  } catch (error) {
-    res.status(400).json({ error: error });
-  }
+        res.json({ token: token });
+    } catch (error) {
+        res.status(400).json({ error: error });
+    }
 };
 
 exports.verify = async (req, res) => {
-  try {
-    const { uid } = req.params;
-    await User.updateOne({ uuidEmail: uid }, { $set: { enabled: true } });
-    res.status(200).redirect("/api/auth/verified");
-  } catch (error) {
-    res.status(400).json({ error: error });
-  }
+    try {
+        const { uid } = req.params;
+        await User.updateOne({ uuidEmail: uid }, { $set: { enabled: true } });
+        res.status(200).redirect("/api/auth/verified");
+    } catch (error) {
+        res.status(400).json({ error: error });
+    }
 };
 
 exports.verified = (req, res) => {
-  res.status(200).json({ message: "Verified route" });
+    res.status(200).json({ message: "Verified route" });
 };
