@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node app",
     "dev": "nodemon app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "ng build --aot --prod"
   },
   "autores": "Santi Araoz Daniel Emmanuel, Chatelet Gastón, Gibbs Ignacio, Martínez Ariel",
   "license": "ISC",
