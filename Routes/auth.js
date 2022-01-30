@@ -5,7 +5,7 @@ const {
   signIn,
   verify,
   verified,
-} = require("../controllers/authController");
+} = require("../Controllers/authController");
 const validation = require("../services/dataValidation");
 const { userSchema } = require("../middlewares/schemas/user");
 const {

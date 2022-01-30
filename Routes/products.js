@@ -7,7 +7,7 @@ const {
   getProductById,
   updateProductById,
   deleteProductById,
-} = require("../controllers/productsController");
+} = require("../Controllers/productsController");
 const multer = require("../config/multer");
 const validation = require("../services/dataValidation");
 const { productSchema } = require("../middlewares/schemas/products");
@@ -31,4 +31,3 @@ router.put(
 router.delete("/:productId", [verifyToken, isAdmin], deleteProductById);
 
 module.exports = router;
- 

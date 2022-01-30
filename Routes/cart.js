@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const cart = require("../controllers/cartController");
+const cart = require("../Controllers/cartController");
 const { verifyToken, isModerator, isAdmin } = require("../middlewares/authJwt");
 
 router.get("/:userId", /* verifyToken*/ cart.userCart);

@@ -1,5 +1,5 @@
 const express = require("express");
-const { preferences, view } = require("../controllers/mPController");
+const { preferences, view } = require("../Controllers/mPController");
 const router = express.Router();
 
 router.get("/", view);
