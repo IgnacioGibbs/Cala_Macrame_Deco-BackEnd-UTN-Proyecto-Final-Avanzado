@@ -12,8 +12,6 @@ const server = process.env.URL_SERVER || "http://localhost";
 const router = require("./Routes/index");
 const app = express();
 
-var allowedOrigins = ['http://localhost:4200', 'http://calamacrameapp.herokuapp.com'];
-
 createRoles();
 
 app.use(morgan("dev")); // Middleware para el manejo y vision de solicitudes HTTP por console
@@ -23,8 +21,7 @@ app.use(helmet());
 app.use(express.json({ extend: true })); // Habilito el formato JSON
 
 app.use(cors({
-  origin: allowedOrigins, credentials: true,  //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
+  origin: '*',
 }));
 
 app.use("/", router);
