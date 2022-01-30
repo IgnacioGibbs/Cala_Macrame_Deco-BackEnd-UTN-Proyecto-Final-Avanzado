@@ -9,7 +9,7 @@ const cors = require("cors");
 dotenv.config(); // Configuracion del .env
 const port = process.env.PORT || 4500;
 const server = process.env.URL_SERVER || "http://localhost";
-const router = require("./routes/index");
+const router = require("./Routes/index");
 const app = express();
 
 var allowedOrigins = ['http://localhost:4200', 'http://calamacrameapp.herokuapp.com'];
