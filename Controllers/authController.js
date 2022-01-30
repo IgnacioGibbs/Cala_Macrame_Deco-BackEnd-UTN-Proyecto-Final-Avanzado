@@ -171,7 +171,7 @@ exports.signUp = async (req, res) => {
                                                                                                                               <td class="m_-2724877240308992397height0"
                                                                                                                                   height="25"
                                                                                                                                   style="padding-left:16px;padding-right:16px;font-family:Helvetica Neue,Arial,sans-serif;font-size:14px;text-align:center;color:white;font-weight:bold">
-                                                                                                                                  <a href="${process.env.APP_URL}/auth/verification/${uid}"
+                                                                                                                                  <a href="${process.env.APP_URL}/account/verification/${uid}"
                                                                                                                                       style="text-decoration:none"
                                                                                                                                       target="_blank"><span
                                                                                                                                           style="display:block;width:100%;padding-top:7px;padding-bottom:7px;color:#ffffff">Validar&nbsp;email</span></a>
