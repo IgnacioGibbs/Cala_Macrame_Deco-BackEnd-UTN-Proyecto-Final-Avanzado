@@ -45,5 +45,5 @@ exports.preferences = async (req, res) => {
 };
 
 exports.view = (req, res) => {
-  res.send("sistema index funcionando para las rutas");
+  res.send("sistema index funcionando para las rutas ");
 };
