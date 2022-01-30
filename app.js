@@ -22,7 +22,10 @@ app.use(helmet());
 
 app.use(express.json({ extend: true })); // Habilito el formato JSON
 
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors({
+  origin: allowedOrigins, credentials: true,  //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+}));
 
 app.use("/", router);
 
