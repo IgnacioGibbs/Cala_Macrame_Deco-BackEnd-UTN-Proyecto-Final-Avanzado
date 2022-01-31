@@ -14,7 +14,11 @@ exports.createProduct = async (req, res) => {
       imgDescription,
     } = req.body;
 
+    console.log('user:', req.body);
+    console.log(req.file);
+
     const { path } = req.file;
+
 
     const backPath = `process.env.URL_SERVER: process.env.PORT_SERVER/${path}`;
 
